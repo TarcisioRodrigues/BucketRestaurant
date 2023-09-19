@@ -17,16 +17,18 @@ export const Header = () => {
         </nav>
       </div>
       <div className="gap-3 flex items-center space-x-4">
-        <Link rel="stylesheet" href="" className="text-red-600">
+        <Link rel="stylesheet" href="/" className="text-red-600">
           Home
         </Link>
         <Link rel="stylesheet" href="" className="text-red-600">
           Menu
         </Link>
-        <Link rel="stylesheet" href="" className="text-red-600">
+        <Link rel="stylesheet" href="/make-request" className="text-red-600">
           Reservas
         </Link>
-        <AiOutlineShoppingCart size={20} className="text-red-600" />
+        <Link href="/cart-buy">
+          <AiOutlineShoppingCart size={20} className="text-red-600" />
+        </Link>
         <button className="w-[250px] h-10 px-6 pt-2.5 pb-[11px] bg-red-600 rounded-[25px] justify-center items-center  inline-flex text-white">
           FAZER PEDIDO
         </button>
