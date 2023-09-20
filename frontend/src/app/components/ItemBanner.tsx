@@ -1,6 +1,14 @@
-"use strict";
+"use client";
+import { useState } from "react";
 import Image from "next/image";
+
 export const ItemBanner = () => {
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+
+  const handleAddToCart = () => {
+    setIsAddedToCart((prevState) => !prevState);
+  };
+
   return (
     <div className="w-[290px] h-[530px] px-4 py-6 bg-white rounded-[10px] border border-stone-300 flex-col justify-center items-center gap-[21px] inline-flex">
       <div className="w-[205.90px] h-[209px] relative">
@@ -19,9 +27,18 @@ export const ItemBanner = () => {
         R$43.50
       </div>
       <div className="flex-col justify-start items-start gap-2.5 flex">
-        <div className="w-[273px] h-10 px-6 pt-2.5 pb-[11px] bg-red-600 rounded-[25px] justify-center items-center gap-2.5 inline-flex">
-          <button className="text-center text-white text-base font-medium font-['Fira Sans'] uppercase">
-            aDICIONAR AO CARRINHO
+        <div
+          className={`w-[273px] h-10 px-6 pt-2.5 pb-[11px]  rounded-[25px] justify-center items-center gap-2.5 inline-flex ${
+            isAddedToCart ? "bg-gray-400" : "bg-red-600"
+          }`}
+        >
+          <button
+            onClick={handleAddToCart}
+            className={`text-center text-white text-base font-medium font-['Fira Sans'] uppercase ${
+              isAddedToCart ? "text-yellow-50" : ""
+            }`}
+          >
+            {isAddedToCart ? "ADICIONADO!" : "ADICIONAR AO CARRINHO"}
           </button>
         </div>
       </div>

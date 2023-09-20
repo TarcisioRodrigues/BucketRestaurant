@@ -1,8 +1,15 @@
+"use client";
 import Image from "next/image";
 
+import { useState } from "react";
 export const SecondaryItemBanner = () => {
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+
+  const handleAddToCart = () => {
+    setIsAddedToCart((prevState) => !prevState);
+  };
   return (
-    <div className="w-full md:w-[80.19rem] h-[auto] bg-stone-50 flex flex-col md:flex-row items-center justify-center">
+    <div className="w-full md:w-[80.19rem] h-[auto] bg-stone-50 flex flex-col md:flex-row items-center justify-center mb-3">
       <div className="md:w-[50%] flex flex-col items-center p-4">
         <Image src="/lanche.png" alt="lanche" width={509} height={317} />
         <div className="w-[258px] h-[38px] text-center text-green-600 text-3xl font-semibold font-['Fira Sans'] leading-loose">
@@ -18,9 +25,13 @@ export const SecondaryItemBanner = () => {
           frita dourada, ovos fritos e um molho especial para dar aquele toque
           extra de sabor. Uma refeição simples e deliciosa para todos os gostos.
         </p>
-        <button className="w-full md:w-[401px] h-10 bg-red-600 rounded-[25px] flex justify-center items-center mt-4">
+        <button
+          onClick={handleAddToCart}
+          className={`w-full md:w-[401px] h-10 rounded-[25px] flex justify-center items-center mt-4
+          ${isAddedToCart ? "bg-gray-400" : "bg-red-600"}`}
+        >
           <div className="text-center text-white text-base font-medium font-['Fira Sans'] uppercase">
-            ADICIONAR AO CARRINHO
+            {isAddedToCart ? "ADICIONADO!" : "ADICIONAR AO CARRINHO"}
           </div>
         </button>
       </div>
