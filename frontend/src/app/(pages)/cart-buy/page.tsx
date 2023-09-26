@@ -1,6 +1,9 @@
+"use client";
+import { useAppContext } from "@/Context";
 import { CardBuy } from "@/app/components/CardBuy";
 
 export default function CartBuy() {
+  const { cartItems } = useAppContext();
   return (
     <div className="flex flex-col justify-center items-center ">
       <div className="text-green-950 text-8xl font-normal font-meow-script mb-10">
@@ -8,9 +11,9 @@ export default function CartBuy() {
       </div>
       <div className="grid grid-cols-2">
         <div>
-          <CardBuy />
-          <CardBuy />
-          <CardBuy />
+          {cartItems.map((cart) => (
+            <CardBuy nome={cart.nome} preco={cart.preco} />
+          ))}
         </div>
 
         <div className="w-[509px] h-[250px] rounded-[3px] shadow bg-slate-100  p-6 flex flex-col gap-20">

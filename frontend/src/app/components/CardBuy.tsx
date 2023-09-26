@@ -1,16 +1,20 @@
+"use client";
 import React from "react";
 import {
   AiOutlineCloseCircle,
   AiFillMinusCircle,
   AiFillPlusCircle,
 } from "react-icons/ai";
-
-export const CardBuy = () => {
+interface IProps {
+  nome: string;
+  preco: number;
+}
+export const CardBuy = (data: IProps) => {
   return (
     <div className="w-[402px] h-[179px] bg-slate-100 rounded-[5px] shadow flex justify-between items-center p-4 mb-4">
       <div>
         <div className="w-[247px] h-[41px] text-black text-2xl font-medium font-poppins">
-          Filé com fritas
+          {data.nome}
         </div>
         <div className="flex gap-2">
           <div className="mt-1">
@@ -27,7 +31,7 @@ export const CardBuy = () => {
           <AiOutlineCloseCircle size={30} />
         </div>
         <div className="w-[116px] h-[37px] text-right text-black text-2xl font-medium font-poppins">
-          R$43,50
+          {data.preco}
         </div>
       </div>
     </div>

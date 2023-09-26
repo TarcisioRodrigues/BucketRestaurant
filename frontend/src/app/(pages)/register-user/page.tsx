@@ -9,28 +9,50 @@ export default function RegisterUser() {
         Garanta sua vaga
       </h1>
       <div className="grid grid-cols-2 gap-14">
-        <div className="flex flex-col p-4 gap-3">
-          <input
-            type="text"
-            placeholder="Nome"
-            className="border-b-4 border-red-600 p-4"
-          />
-          <input
-            type="text"
-            placeholder="E-mail"
-            className="border-b-4 border-red-600 p-4"
-          />
-          <input
-            type="text"
-            placeholder="Mensagem"
-            className="border-b-4 border-red-600 p-4"
-          />
-          <div className="w-[317px] h-[77px] px-[120px] py-6 bg-red-600 rounded-[48px] justify-center items-center gap-2.5 inline-flex">
-            <button className="text-white text-2xl font-medium font-['Montserrat'] leading-[28.80px]">
-              Enviar
-            </button>
+        <form className="p-5">
+          <div className="mb-4">
+            <label htmlFor="username" className="block font-semibold mb-1">
+              Nome de usuário:
+            </label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              className="w-full p-2 border rounded-md"
+              required
+            />
           </div>
-        </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block font-semibold mb-1">
+              Email:
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className="w-full p-2 border rounded-md"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block font-semibold mb-1">
+              Senha:
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className="w-full p-2 border rounded-md"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-red-600 text-white p-2 rounded-md hover:bg-red-300 items-center justify-center"
+          >
+            Entrar
+          </button>
+        </form>
         <div className="flex flex-col justify-center ml-20 ">
           <div className="w-[191.15px] h-[31.94px] text-black text-[32px] font-bold font-['Montserrat'] leading-[38.40px]">
             Contact

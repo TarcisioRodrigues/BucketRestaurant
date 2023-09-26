@@ -1,8 +1,10 @@
-import "./globals.css";
+"use client";
+import { Providers } from "@/Providers";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Header } from "./components/Header";
-
+import "./globals.css";
+import { usePathname } from "next/navigation";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -15,11 +17,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathName = usePathname();
+  console.log(pathName);
   return (
     <html lang="en">
       <body>
-        <Header />
-        <div className={inter.className}>{children}</div>
+        <Providers>
+          {pathName === "/login" || pathName === "/register" ? null : (
+            <Header />
+          )}
+          <div className={inter.className}>{children}</div>
+        </Providers>
       </body>
     </html>
   );

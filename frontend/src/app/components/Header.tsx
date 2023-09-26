@@ -1,10 +1,10 @@
-"use strict";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+
 export const Header = () => {
   return (
-    <div className="w-full flex items-center justify-between p-3">
+    <div className={`w-full flex items-center justify-between p-3 `}>
       <div>
         <nav className=" ">
           <Image
@@ -17,21 +17,30 @@ export const Header = () => {
         </nav>
       </div>
       <div className="gap-3 flex items-center space-x-4">
-        <Link rel="stylesheet" href="/" className="text-red-600">
+        <Link href="/" className="text-red-600">
           Home
         </Link>
-        <Link rel="stylesheet" href="" className="text-red-600">
+        <Link href="" className="text-red-600">
           Menu
         </Link>
-        <Link rel="stylesheet" href="/make-request" className="text-red-600">
+        <Link href="/make-request" className="text-red-600">
           Reservas
         </Link>
-        <Link href="/cart-buy">
-          <AiOutlineShoppingCart size={20} className="text-red-600" />
+        <Link
+          href="/cart-buy"
+          className="relative flex items-center justify-center p-2  "
+        >
+          <AiOutlineShoppingCart size={25} className="text-red-600" />
+          <span className="bg-red-600 w-[16px] h-[16px] absolute top-0 right-0 text-white flex items-center justify-center rounded-full">
+            1
+          </span>
         </Link>
-        <button className="w-[250px] h-10 px-6 pt-2.5 pb-[11px] bg-red-600 rounded-[25px] justify-center items-center  inline-flex text-white">
-          FAZER PEDIDO
-        </button>
+        <Link
+          href="/login"
+          className="w-[250px] h-10 px-6 pt-2.5 pb-[11px] bg-red-600 rounded-[25px] justify-center items-center inline-flex text-white"
+        >
+          Entrar
+        </Link>
       </div>
     </div>
   );
