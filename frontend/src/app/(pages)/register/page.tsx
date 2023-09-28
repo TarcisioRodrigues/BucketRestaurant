@@ -9,7 +9,7 @@ export default function Register() {
   const [error, setError] = useState("");
   const { signup, navigate } = useAppContext();
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     if (!email || !emailConf || !password) {
       setError("Preencha todos os campos");
       return;
@@ -18,7 +18,7 @@ export default function Register() {
       return;
     }
 
-    const res = signup(email, password);
+    const res = await signup(email, password);
 
     if (res) {
       setError(res);

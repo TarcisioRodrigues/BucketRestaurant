@@ -8,9 +8,11 @@ export interface AppContextData {
   cartItems: any[];
   setCartItems: (cartItems: IProps[]) => void;
   isCartVisible: boolean;
+  user: boolean;
+  setUser: (cartItems: any[]) => void;
   setIsCartVisible: (isVisible: boolean) => void;
-  signin: (email: string, password: string) => string | void;
-  signup: (email: string, password: string) => string | void;
-  navigate: (path: string) => string | void;
+  signin: (email: string, password: string) => Promise<string | null>;
+  signup: (email: string, password: string) => Promise<string | null>;
+  navigate: (path: string) => Promise<void>;
   signout: () => void;
 }

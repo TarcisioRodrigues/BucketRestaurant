@@ -17,7 +17,7 @@ interface AppProviderProps {
 const AppContext = createContext<AppContextData>({} as AppContextData);
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(false);
   const [products, setProducts] = useState<any[]>([]);
   const [cartItems, setCartItems] = useState<IProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -37,9 +37,11 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     }
   }, []);
 
-  const signin = async (email: string, password: string) => {
+  const signin = async (
+    email: string,
+    password: string
+  ): Promise<string | null> => {
     try {
-      // Faz uma chamada à API para autenticar o usuário usando o Axios
       const response = await api.post("auth", {
         email,
         password,
@@ -50,21 +52,24 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         const token = Math.random().toString(36).substring(2);
         localStorage.setItem("user_token", JSON.stringify({ email, token }));
         setUser(userData);
+        return null; // Sucesso, retorna null
       } else {
-        throw new Error("E-mail ou senha incorretos");
+        return "E-mail ou senha incorretos"; // Erro, retorna a mensagem de erro
       }
     } catch (error) {
-      throw new Error("Erro ao autenticar usuário");
+      return "Erro ao autenticar usuário"; // Erro, retorna a mensagem de erro
     }
   };
 
-  const signup = async (email: string, password: string) => {
+  const signup = async (
+    email: string,
+    password: string
+  ): Promise<string | null> => {
     try {
-      // Verifica se o usuário já existe na API
       const response = await api.get(`/users?email=${email}`);
 
       if (response.status === 200 && response.data.length > 0) {
-        throw new Error("Já existe uma conta com este e-mail");
+        return "Já existe uma conta com este e-mail"; // Erro, retorna a mensagem de erro
       }
 
       // Se o usuário não existe, cria uma nova conta na API
@@ -74,19 +79,20 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       });
 
       if (createUserResponse.status === 201) {
-        // Usuário registrado com sucesso
+        return null; // Sucesso, retorna null
       } else {
-        throw new Error("Erro ao criar a conta");
+        return "Erro ao criar a conta"; // Erro, retorna a mensagem de erro
       }
     } catch (error) {
-      throw new Error(error.message);
+      return "Requisição 500"; // Erro, retorna a mensagem de erro
     }
   };
+
   const signout = () => {
-    setUser(null);
+    setUser(false);
     localStorage.removeItem("user_token");
   };
-  const navigate = (path: string) => {
+  const navigate = async (path: string) => {
     const router = useRouter();
     router.push(path);
   };
