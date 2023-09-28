@@ -19,9 +19,6 @@ export class Food {
   @Column("decimal", { precision: 10, scale: 2 })
   price: number;
 
-  @Column()
-  password: string;
-
   @CreateDateColumn()
   created_at: string;
 }

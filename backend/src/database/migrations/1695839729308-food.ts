@@ -4,7 +4,7 @@ export class food1695839729308 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "foods",
+        name: "food",
         columns: [
           {
             name: "id",
@@ -25,10 +25,6 @@ export class food1695839729308 implements MigrationInterface {
             type: "decimal",
           },
           {
-            name: "password",
-            type: "varchar",
-          },
-          {
             name: "created_at",
             type: "timestamp",
             default: "now()",
@@ -39,6 +35,6 @@ export class food1695839729308 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("foods");
+    await queryRunner.dropTable("food");
   }
 }

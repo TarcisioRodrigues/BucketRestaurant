@@ -8,7 +8,8 @@ const routes = Router();
 
 routes.post("/users", UserControllers.store);
 routes.post("/food", FoodContoller.store);
-routes.post("/listfood", FoodContoller.index);
+routes.get("/listfood", FoodContoller.index);
+routes.get("/listfood/:name", FoodContoller.search);
 routes.post("/auth", AuthenticateController.store);
 routes.get("/listagem", UserControllers.index);
 routes.get("/list", ensureAuthenticate, UserControllers.index);

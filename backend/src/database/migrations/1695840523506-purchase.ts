@@ -52,7 +52,7 @@ export class CreatePurchase1632237423845 implements MigrationInterface {
       new TableForeignKey({
         columnNames: ["food_id"],
         referencedColumnNames: ["id"],
-        referencedTableName: "foods",
+        referencedTableName: "food",
         onDelete: "CASCADE",
       })
     );
