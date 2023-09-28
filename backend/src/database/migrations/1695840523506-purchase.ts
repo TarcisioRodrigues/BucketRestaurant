@@ -28,7 +28,7 @@ export class CreatePurchase1632237423845 implements MigrationInterface {
             type: "uuid",
           },
           {
-            name: "purchase_date",
+            name: "created_at",
             type: "timestamp",
             default: "now()",
           },
@@ -59,7 +59,6 @@ export class CreatePurchase1632237423845 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    // Reverter as operações, se necessário
     await queryRunner.dropTable("purchase");
   }
 }
