@@ -1,35 +1,63 @@
 "use client";
-import Link from "next/link";
-import React from "react";
-
-interface Credentials {
-  username: string;
-  password: string;
-}
+import { useAppContext } from "@/Context";
+import { useState } from "react";
 
 export default function Register() {
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-  };
+  const [email, setEmail] = useState("");
+  const [emailConf, setEmailConf] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { signup, navigate } = useAppContext();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSignup = () => {
+    if (!email || !emailConf || !password) {
+      setError("Preencha todos os campos");
+      return;
+    } else if (email !== emailConf) {
+      setError("Os e-mails não são iguais");
+      return;
+    }
+
+    const res = signup(email, password);
+
+    if (res) {
+      setError(res);
+      return;
+    }
+
+    alert("Usuário cadatrado com sucesso!");
+    navigate("/");
   };
 
   return (
     <div className=" flex justify-center items-center h-[70vh]">
       <div className="bg-slate-100 p-4 rounded-md w-2/6  h-90">
         <h2 className="text-2xl font-semibold mb-4">Faça seu cadastro!</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <div className="flex flex-col">
           <div className="mb-4">
             <label htmlFor="username" className="block font-semibold mb-1">
-              Nome de usuário:
+              Email:
             </label>
             <input
               type="text"
-              id="username"
-              name="username"
-              onChange={handleInputChange}
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => [setEmail(e.target.value), setError("")]}
+              className="w-full p-2 border rounded-md"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="username" className="block font-semibold mb-1">
+              Confirmar Email:
+            </label>
+            <input
+              type="text"
+              id="cemail"
+              name="cemail"
+              value={emailConf}
+              onChange={(e) => [setEmailConf(e.target.value), setError("")]}
               className="w-full p-2 border rounded-md"
               required
             />
@@ -42,18 +70,20 @@ export default function Register() {
               type="password"
               id="password"
               name="password"
-              onChange={handleInputChange}
+              value={password}
+              onChange={(e) => [setPassword(e.target.value), setError("")]}
               className="w-full p-2 border rounded-md"
               required
             />
           </div>
           <button
-            type="submit"
             className="w-full bg-red-600 text-white p-2 rounded-md hover:bg-red-300"
+            onClick={handleSignup}
           >
             Criar
           </button>
-        </form>
+        </div>
+        <p>{error}</p>
       </div>
     </div>
   );

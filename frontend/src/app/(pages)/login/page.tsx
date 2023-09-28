@@ -1,35 +1,49 @@
 "use client";
+import { useAppContext } from "@/Context";
 import Link from "next/link";
-import React from "react";
-
+import { useState } from "react";
 interface Credentials {
-  username: string;
+  email: string;
   password: string;
 }
 
 export default function Login() {
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-  };
+  const { signin, navigate } = useAppContext();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleLogin = () => {
+    if (!email || !password) {
+      setError("Preencha todos os campos");
+      return;
+    }
+
+    const res = signin(email, password);
+
+    if (res) {
+      setError(res);
+      return;
+    }
+
+    navigate("/home");
   };
 
   return (
     <div className="flex justify-center items-center h-[70vh]">
       <div className="bg-slate-100 p-4 rounded-md w-2/6 h-90">
         <h2 className="text-2xl font-semibold mb-4">Faça login</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <div className="flex flex-col">
           <div className="mb-4">
             <label htmlFor="username" className="block font-semibold mb-1">
               Nome de usuário:
             </label>
             <input
               type="text"
-              id="username"
-              name="username"
-              onChange={handleInputChange}
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => [setEmail(e.target.value), setError("")]}
               className="w-full p-2 border rounded-md"
               required
             />
@@ -42,14 +56,15 @@ export default function Login() {
               type="password"
               id="password"
               name="password"
-              onChange={handleInputChange}
+              value={password}
+              onChange={(e) => [setPassword(e.target.value), setError("")]}
               className="w-full p-2 border rounded-md"
               required
             />
           </div>
           <button
-            type="submit"
             className="w-full bg-red-600 text-white p-2 rounded-md hover:bg-red-300"
+            onClick={handleLogin}
           >
             Entrar
           </button>
@@ -58,7 +73,7 @@ export default function Login() {
               Cadastre-se já
             </Link>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
