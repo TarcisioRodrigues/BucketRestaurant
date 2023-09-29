@@ -8,6 +8,17 @@ class UserController {
 
     return response.json(data);
   }
+  async FindEmail(request: Request, response: Response) {
+    const { email } = request.params;
+    const repository = getRepository(User);
+    const data = await repository.findOne({ email });
+
+    if (!data) {
+      return console.log("NAda");
+    } else {
+      return response.json(data);
+    }
+  }
   async store(request: Request, response: Response) {
     const repository = getRepository(User);
     const { name, email, password } = request.body;
