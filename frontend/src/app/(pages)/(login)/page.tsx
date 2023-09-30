@@ -1,6 +1,7 @@
 "use client";
 import { useAppContext } from "@/Context";
 import Link from "next/link";
+
 import { useState } from "react";
 interface Credentials {
   email: string;
@@ -35,8 +36,8 @@ export default function Login() {
         <h2 className="text-2xl font-semibold mb-4">Faça login</h2>
         <div className="flex flex-col">
           <div className="mb-4">
-            <label htmlFor="username" className="block font-semibold mb-1">
-              Nome de usuário:
+            <label htmlFor="Email" className="block font-semibold mb-1">
+              Email:
             </label>
             <input
               type="text"
@@ -73,6 +74,7 @@ export default function Login() {
               Cadastre-se já
             </Link>
           </div>
+          {error}
         </div>
       </div>
     </div>

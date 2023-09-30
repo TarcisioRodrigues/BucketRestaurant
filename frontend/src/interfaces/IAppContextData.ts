@@ -12,7 +12,12 @@ export interface AppContextData {
   setUser: (cartItems: any[]) => void;
   setIsCartVisible: (isVisible: boolean) => void;
   signin: (email: string, password: string) => Promise<string | null>;
-  signup: (email: string, password: string) => Promise<string | null>;
+  signup: (
+    name: string,
+    email: string,
+    password: string
+  ) => Promise<string | null>;
   navigate: (path: string) => Promise<void>;
   signout: () => void;
+  signed: boolean;
 }

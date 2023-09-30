@@ -1,8 +1,13 @@
+import { useAppContext } from "@/Context";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export const Header = () => {
+  const { signout } = useAppContext();
+  const signoutBack = () => {
+    signout();
+  };
   return (
     <div className={`w-full flex items-center justify-between p-3 `}>
       <div>
@@ -17,7 +22,7 @@ export const Header = () => {
         </nav>
       </div>
       <div className="gap-3 flex items-center space-x-4">
-        <Link href="/" className="text-red-600">
+        <Link href="/home" className="text-red-600">
           Home
         </Link>
         <Link href="" className="text-red-600">
@@ -35,12 +40,12 @@ export const Header = () => {
             1
           </span>
         </Link>
-        <Link
-          href="/login"
+        <button
+          onClick={signoutBack}
           className="w-[250px] h-10 px-6 pt-2.5 pb-[11px] bg-red-600 rounded-[25px] justify-center items-center inline-flex text-white"
         >
-          Entrar
-        </Link>
+          Sair
+        </button>
       </div>
     </div>
   );

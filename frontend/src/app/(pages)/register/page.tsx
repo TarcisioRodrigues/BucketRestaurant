@@ -3,6 +3,7 @@ import { useAppContext } from "@/Context";
 import { useState } from "react";
 
 export default function Register() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [emailConf, setEmailConf] = useState("");
   const [password, setPassword] = useState("");
@@ -18,15 +19,15 @@ export default function Register() {
       return;
     }
 
-    const res = await signup(email, password);
-
-    if (res) {
-      setError(res);
-      return;
-    }
+    const res = await signup(name, email, password);
+    console.log(res);
+    // if (res) {
+    //   setError(res);
+    //   return;
+    // }
 
     alert("Usuário cadatrado com sucesso!");
-    navigate("/");
+    navigate("/home");
   };
 
   return (
@@ -35,9 +36,19 @@ export default function Register() {
         <h2 className="text-2xl font-semibold mb-4">Faça seu cadastro!</h2>
         <div className="flex flex-col">
           <div className="mb-4">
-            <label htmlFor="username" className="block font-semibold mb-1">
-              Email:
-            </label>
+            <label className="block font-semibold mb-1">Nome de usuário:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              onChange={(e) => [setName(e.target.value), setError("")]}
+              className="w-full p-2 border rounded-md"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block font-semibold mb-1">Email:</label>
             <input
               type="text"
               id="email"
@@ -49,9 +60,7 @@ export default function Register() {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="username" className="block font-semibold mb-1">
-              Confirmar Email:
-            </label>
+            <label className="block font-semibold mb-1">Confirmar Email:</label>
             <input
               type="text"
               id="cemail"
