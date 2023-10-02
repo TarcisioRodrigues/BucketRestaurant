@@ -12,6 +12,8 @@ export class Food {
 
   @Column()
   name: string;
+  @Column()
+  image: string;
 
   @Column()
   description: string;

@@ -4,10 +4,11 @@ import Food from "../models/Food";
 class FoodContoller {
   async store(request: Request, response: Response) {
     const repository = getRepository(Food);
-    const { name, description, price } = request.body;
+    const { name, image, description, price } = request.body;
 
     const food = await repository.create({
       name,
+      image,
       description,
       price,
     });

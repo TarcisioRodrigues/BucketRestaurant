@@ -17,6 +17,10 @@ export class food1695839729308 implements MigrationInterface {
             type: "varchar",
           },
           {
+            name: "image",
+            type: "varchar",
+          },
+          {
             name: "description",
             type: "varchar",
           },
