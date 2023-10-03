@@ -20,6 +20,8 @@ export class Food {
 
   @Column("decimal", { precision: 10, scale: 2 })
   price: number;
+  // @Column("decimal", { precision: 10, scale: 2 })
+  // quantity: number;
 
   @CreateDateColumn()
   created_at: string;

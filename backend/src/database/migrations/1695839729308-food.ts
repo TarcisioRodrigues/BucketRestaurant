@@ -28,6 +28,10 @@ export class food1695839729308 implements MigrationInterface {
             name: "price",
             type: "decimal",
           },
+          // {
+          //   name: "quantity",
+          //   type: "decimal",
+          // },
           {
             name: "created_at",
             type: "timestamp",
