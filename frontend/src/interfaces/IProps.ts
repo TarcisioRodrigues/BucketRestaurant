@@ -1,7 +1,7 @@
 export interface IProps {
   id: number;
-  nome: string;
-  descricao: string;
-  imagem: string;
-  preco: number;
+  name: string;
+  description: string;
+  image: string;
+  price: number;
 }

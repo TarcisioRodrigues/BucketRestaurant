@@ -71,7 +71,7 @@ export default function Login() {
           </button>
           <div className="flex justify-end">
             <Link href="/register" className="text-blue-500 mt-4">
-              Cadastre-se já
+              Não tem conta?Cadastre-se já!
             </Link>
           </div>
           {error}

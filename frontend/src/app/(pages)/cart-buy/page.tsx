@@ -2,9 +2,21 @@
 import { useAppContext } from "@/Context";
 import { CardBuy } from "@/app/components/CardBuy";
 import PrivateRoute from "@/app/components/PrivateRouter";
+import formatCurrency from "@/utils/formatCurrency";
 
 export default function CartBuy() {
   const { cartItems } = useAppContext();
+  const calculateTotalPrice = () => {
+    let total = 0;
+    for (const itemId in cartItems) {
+      if (cartItems.hasOwnProperty(itemId)) {
+        const item = cartItems[itemId];
+        total = item.price;
+      }
+    }
+    return total;
+  };
+  console.log("dasd", cartItems);
   return (
     <PrivateRoute>
       <div className="flex flex-col justify-center items-center ">
@@ -14,7 +26,7 @@ export default function CartBuy() {
         <div className="grid grid-cols-2">
           <div>
             {cartItems.map((cart) => (
-              <CardBuy nome={cart.nome} preco={cart.preco} />
+              <CardBuy id={cart.id} name={cart.name} price={cart.price} />
             ))}
           </div>
 
@@ -23,7 +35,7 @@ export default function CartBuy() {
               Valor Total
             </div>
             <div className="w-[135.58px] h-[38.15px] text-black text-opacity-80 text-3xl font-normal font-['Mulish'] mt-10 ">
-              Total:$80.00
+              Total:{formatCurrency(calculateTotalPrice(), "BRL")}
             </div>
           </div>
         </div>

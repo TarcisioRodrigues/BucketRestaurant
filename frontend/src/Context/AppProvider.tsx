@@ -3,40 +3,22 @@ import { AppContextData } from "@/interfaces/IAppContextData";
 import { IProps } from "@/interfaces/IProps";
 import { useRouter } from "next/navigation";
 
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { ReactNode, createContext, useContext, useState } from "react";
 
 interface AppProviderProps {
   children: ReactNode;
 }
 
 const AppContext = createContext<AppContextData>({} as AppContextData);
-
+interface Idata {
+  userData: string | null;
+}
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  const [user, setUser] = useState(false);
   const [products, setProducts] = useState<any[]>([]);
   const [cartItems, setCartItems] = useState<IProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
-
-  useEffect(() => {
-    const userToken = localStorage.getItem("user_token");
-    const usersStorage = localStorage.getItem("users_bd");
-
-    if (userToken && usersStorage) {
-      const hasUser = JSON.parse(usersStorage)?.filter(
-        (user: any) => user.email === JSON.parse(userToken).email
-      );
-
-      if (hasUser) setUser(hasUser[0]);
-    }
-  }, []);
 
   const signin = async (
     email: string,
@@ -50,10 +32,12 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       console.log(response);
 
       if (response.status === 200) {
-        const userData = response.data;
-        const token = Math.random().toString(36).substring(2);
-        localStorage.setItem("user_token", JSON.stringify({ email, token }));
-        setUser(true);
+        const userData = response.data.token;
+        const user = response.data.user;
+
+        localStorage.setItem("user_token", userData);
+        localStorage.setItem("user_name", user.name);
+        localStorage.setItem("user_id", user.id);
         return null;
       } else {
         return "E-mail ou senha incorretos";
@@ -74,9 +58,10 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         email,
         password,
       });
-
+      console.log("usuario criado!", createUserResponse);
       if (createUserResponse.status === 201) {
-        return null; // Sucesso, retorna null
+        alert("Usuario Criado!");
+        return null;
       } else {
         return "Erro ao criar a conta";
       }
@@ -86,7 +71,6 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   };
 
   const signout = () => {
-    setUser(false);
     localStorage.removeItem("user_token");
     navigate("/");
   };
@@ -104,9 +88,6 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     setCartItems,
     isCartVisible,
     setIsCartVisible,
-    user,
-    setUser(cartItems) {},
-    signed: !!user,
     signin,
     signup,
     signout,

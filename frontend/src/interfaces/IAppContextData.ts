@@ -1,5 +1,7 @@
 import { IProps } from "./IProps";
-
+export interface Idata {
+  userData?: string | null;
+}
 export interface AppContextData {
   products: IProps[];
   setProducts: (products: any[]) => void;
@@ -8,8 +10,6 @@ export interface AppContextData {
   cartItems: any[];
   setCartItems: (cartItems: IProps[]) => void;
   isCartVisible: boolean;
-  user: boolean;
-  setUser: (cartItems: any[]) => void;
   setIsCartVisible: (isVisible: boolean) => void;
   signin: (email: string, password: string) => Promise<string | null>;
   signup: (
@@ -19,5 +19,4 @@ export interface AppContextData {
   ) => Promise<string | null>;
   navigate: (path: string) => Promise<void>;
   signout: () => void;
-  signed: boolean;
 }

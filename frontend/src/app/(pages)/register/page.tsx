@@ -8,7 +8,7 @@ export default function Register() {
   const [emailConf, setEmailConf] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { signup, navigate } = useAppContext();
+  const { signup, navigate, signin } = useAppContext();
 
   const handleSignup = async () => {
     if (!email || !emailConf || !password) {
@@ -27,6 +27,7 @@ export default function Register() {
     // }
 
     alert("Usuário cadatrado com sucesso!");
+    signin(email, password);
     navigate("/home");
   };
 

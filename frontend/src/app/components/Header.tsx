@@ -1,13 +1,15 @@
 import { useAppContext } from "@/Context";
 import Image from "next/image";
 import Link from "next/link";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlinePoweroff } from "react-icons/ai";
 
 export const Header = () => {
   const { signout } = useAppContext();
   const signoutBack = () => {
     signout();
   };
+  const user = localStorage.getItem("user_name");
+
   return (
     <div className={`w-full flex items-center justify-between p-3 `}>
       <div>
@@ -40,11 +42,12 @@ export const Header = () => {
             1
           </span>
         </Link>
+        {user}
         <button
           onClick={signoutBack}
-          className="w-[250px] h-10 px-6 pt-2.5 pb-[11px] bg-red-600 rounded-[25px] justify-center items-center inline-flex text-white"
+          className="w-[60px] h-10 px-6pb-[11px] bg-red-600 rounded-[25px] justify-center items-center inline-flex text-white"
         >
-          Sair
+          <AiOutlinePoweroff size={25} />
         </button>
       </div>
     </div>
