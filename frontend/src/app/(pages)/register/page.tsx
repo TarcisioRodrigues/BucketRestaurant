@@ -21,14 +21,10 @@ export default function Register() {
 
     const res = await signup(name, email, password);
     console.log(res);
-    // if (res) {
-    //   setError(res);
-    //   return;
-    // }
 
     alert("Usuário cadatrado com sucesso!");
     signin(email, password);
-    navigate("/home");
+    navigate("/");
   };
 
   return (

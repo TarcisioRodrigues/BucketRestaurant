@@ -23,7 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          {pathName === "/" || pathName === "/register" ? null : <Header />}
+          {pathName === "/login" || pathName === "/register" ? null : (
+            <Header />
+          )}
           <div className={inter.className}>{children}</div>
         </Providers>
       </body>

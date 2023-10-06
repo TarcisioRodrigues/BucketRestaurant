@@ -27,7 +27,7 @@ export default function Login() {
       return;
     }
 
-    navigate("/home");
+    navigate("/");
   };
 
   return (

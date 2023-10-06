@@ -11,7 +11,7 @@ export default function CartBuy() {
     for (const itemId in cartItems) {
       if (cartItems.hasOwnProperty(itemId)) {
         const item = cartItems[itemId];
-        total = item.price;
+        total += item.price;
       }
     }
     return total;

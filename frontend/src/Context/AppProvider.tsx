@@ -71,8 +71,12 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   };
 
   const signout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("user_name");
+    localStorage.removeItem("user_id");
     localStorage.removeItem("user_token");
-    navigate("/");
+
+    navigate("/login");
   };
   const router = useRouter();
   const navigate = async (path: string): Promise<void> => {

@@ -1,7 +1,11 @@
 import { useAppContext } from "@/Context";
 import Image from "next/image";
 import Link from "next/link";
-import { AiOutlineShoppingCart, AiOutlinePoweroff } from "react-icons/ai";
+import {
+  AiOutlineShoppingCart,
+  AiOutlinePoweroff,
+  AiOutlineSearch,
+} from "react-icons/ai";
 
 export const Header = () => {
   const { signout } = useAppContext();
@@ -23,15 +27,14 @@ export const Header = () => {
           />
         </nav>
       </div>
+
       <div className="gap-3 flex items-center space-x-4">
-        <Link href="/home" className="text-red-600">
+        <Link href="/" className="text-red-600">
           Home
         </Link>
-        <Link href="" className="text-red-600">
-          Menu
-        </Link>
+
         <Link href="/make-request" className="text-red-600">
-          Reservas
+          Menu
         </Link>
         <Link
           href="/cart-buy"
