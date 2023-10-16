@@ -16,7 +16,7 @@ export default function CartBuy() {
     }
     return total;
   };
-  console.log("dasd", cartItems);
+
   return (
     <PrivateRoute>
       <div className="flex flex-col justify-center items-center ">

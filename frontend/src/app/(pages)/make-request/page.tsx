@@ -1,6 +1,5 @@
 "use client";
 import { useAppContext } from "@/Context";
-import PrivateRoute from "@/app/components/PrivateRouter";
 import { SecondaryItemBanner } from "@/app/components/SecondaryItemBanner";
 import { api } from "@/infra/api/api";
 import { IProps } from "@/interfaces/IProps";
@@ -44,34 +43,32 @@ export default function MakeRequest() {
     }
   }, [searchText, products]);
   return (
-    <PrivateRoute>
-      <div className="w-full flex flex-col items-center justify-center">
-        <div className=" relative text-gray-600 mb-5">
-          <input
-            type="search"
-            name="search"
-            placeholder="Pesquisar..."
-            className="bg-stone-50 w-250 h-10 px-6 pr-10 rounded-full text-sm focus:outline-none w-64"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-          />
-          <button type="submit" className="absolute right-0 top-0 mt-3 mr-4 ">
-            <AiOutlineSearch className="text-gray-600 h-5 w-5" />
-          </button>
-        </div>
-        <div className="max-w-screen-xl mx-auto">
-          {filteredProducts.map((product: IProps) => (
-            <SecondaryItemBanner
-              key={product.id}
-              id={product.id}
-              description={product.description}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-            />
-          ))}
-        </div>
+    <div className="w-full flex flex-col items-center justify-center">
+      <div className=" relative text-gray-600 mb-5">
+        <input
+          type="search"
+          name="search"
+          placeholder="Pesquisar..."
+          className="bg-stone-50 w-250 h-10 px-6 pr-10 rounded-full text-sm focus:outline-none w-64"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <button type="submit" className="absolute right-0 top-0 mt-3 mr-4 ">
+          <AiOutlineSearch className="text-gray-600 h-5 w-5" />
+        </button>
       </div>
-    </PrivateRoute>
+      <div className="max-w-screen-xl mx-auto">
+        {filteredProducts.map((product: IProps) => (
+          <SecondaryItemBanner
+            key={product.id}
+            id={product.id}
+            description={product.description}
+            image={product.image}
+            name={product.name}
+            price={product.price}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

@@ -70,7 +70,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         email,
         password,
       });
-      console.log("usuario criado!", createUserResponse);
+
       if (createUserResponse.status === 201) {
         alert("Usuario Criado!");
         return null;

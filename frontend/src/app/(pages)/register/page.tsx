@@ -20,10 +20,9 @@ export default function Register() {
     }
 
     const res = await signup(name, email, password);
-    console.log(res);
 
     alert("Usuário cadatrado com sucesso!");
-    signin(email, password);
+    await signin(email, password);
     navigate("/");
   };
 
