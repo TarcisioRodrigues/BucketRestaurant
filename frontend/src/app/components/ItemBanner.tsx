@@ -9,8 +9,10 @@ export const ItemBanner = (data: IProps) => {
   const { cartItems, setCartItems } = useAppContext();
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const handleAddToCart = () => {
+    const updatedCart = [...cartItems, data];
     setCartItems([...cartItems, data]);
     setIsAddedToCart((prevState) => !prevState);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
   };
   return (
     <div className="w-[290px] h-[530px] px-4 py-6 bg-white rounded-[10px] border border-stone-300 flex-col justify-center items-center gap-[21px] inline-flex">

@@ -3,7 +3,13 @@ import { AppContextData } from "@/interfaces/IAppContextData";
 import { IProps } from "@/interfaces/IProps";
 import { useRouter } from "next/navigation";
 
-import { ReactNode, createContext, useContext, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface AppProviderProps {
   children: ReactNode;
@@ -19,6 +25,12 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
+  useEffect(() => {
+    const cartItemsFromStorage = localStorage.getItem("cartItems");
+    if (cartItemsFromStorage) {
+      setCartItems(JSON.parse(cartItemsFromStorage));
+    }
+  }, []);
 
   const signin = async (
     email: string,
@@ -76,7 +88,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     localStorage.removeItem("user_id");
     localStorage.removeItem("user_token");
 
-    navigate("/login");
+    navigate("/");
   };
   const router = useRouter();
   const navigate = async (path: string): Promise<void> => {

@@ -3,13 +3,14 @@ import { IProps } from "@/interfaces/IProps";
 import formatCurrency from "@/utils/formatCurrency";
 import Image from "next/image";
 import { useState } from "react";
-
 export const SecondaryItemBanner = (data: IProps) => {
   const { cartItems, setCartItems } = useAppContext();
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const handleAddToCart = () => {
+    const updatedCart = [...cartItems, data];
     setCartItems([...cartItems, data]);
     setIsAddedToCart((prevState) => !prevState);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
   };
   return (
     <div className="w-full md:w-[80.19rem] h-[auto] bg-stone-50 flex flex-col md:flex-row items-center justify-center mb-3">

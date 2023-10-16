@@ -20,6 +20,7 @@ export const CardBuy = (data: IProps) => {
     const updatedCartItems = cartItems.filter((item) => item.id !== id);
 
     setCartItems(updatedCartItems);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
   const handleIncrement = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -53,7 +54,6 @@ export const CardBuy = (data: IProps) => {
       setCartItems(updatedCartItems);
     }
   };
-
   return (
     <div className="w-[402px] h-[179px] bg-slate-100 rounded-[5px] shadow flex justify-between items-center p-4 mb-4">
       <div>

@@ -26,7 +26,6 @@ export default function Home() {
       }
     }
 
-    // Chame a função para buscar os produtos
     fetchProducts();
   }, [setProducts, setLoading]);
   const shuffledProducts = [...products].sort(() => Math.random() - 0.5);
