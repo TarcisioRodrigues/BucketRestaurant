@@ -32,7 +32,7 @@ export default function CartBuy() {
             <div className="grid grid-cols-2">
               <div>
                 {cartItems.map((cart) => (
-                  <CardBuy id={cart.id} name={cart.name} price={cart.price} />
+                  <CardBuy key={cart.id} id={cart.id} name={cart.name} price={cart.price} />
                 ))}
               </div>
 
