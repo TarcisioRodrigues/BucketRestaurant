@@ -12,6 +12,7 @@ routes.get("/users/:name", UserControllers.FindEmail);
 routes.post("/food", FoodContoller.store);
 
 routes.get("/listfood", FoodContoller.index);
+
 routes.get("/listfood/:name", FoodContoller.search);
 routes.post("/purchase", PurchaseController.store);
 routes.get("/listpurchase", PurchaseController.index);

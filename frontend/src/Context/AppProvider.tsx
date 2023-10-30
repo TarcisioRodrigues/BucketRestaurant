@@ -1,3 +1,4 @@
+"use client"
 import { api } from "@/infra/api/api";
 import { AppContextData } from "@/interfaces/IAppContextData";
 import { IProps } from "@/interfaces/IProps";
