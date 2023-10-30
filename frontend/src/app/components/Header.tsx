@@ -1,3 +1,4 @@
+"use client"
 import { useAppContext } from "@/Context";
 import Image from "next/image";
 import Link from "next/link";

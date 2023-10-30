@@ -15,7 +15,7 @@ export const SecondaryItemBanner = (data: IProps) => {
   return (
     <div className="w-full md:w-[80.19rem] h-[auto] bg-stone-50 flex flex-col md:flex-row items-center justify-center mb-3">
       <div className="md:w-[50%] flex flex-col items-center p-4">
-        <Image src={data.image} alt="lanche" width={509} height={317} />
+        <Image src={`/${data.image}`} alt="lanche" width={509} height={317} />
         <div className="w-[258px] h-[38px] text-center text-green-600 text-3xl font-semibold font-['Fira Sans'] leading-loose">
           {formatCurrency(data.price, "BRL")}
         </div>
